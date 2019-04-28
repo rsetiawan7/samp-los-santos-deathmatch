@@ -10,7 +10,8 @@
 		"YSI-Visual/y_commands",
 		"YSI-Core/y_debug",
 		"YSI-Data/y_iterate",
-		"YSI-Coding/y_timers"
+		"YSI-Coding/y_timers",
+		"YSI-Data/y_bit"
 	],
 	"runtime": {
 		"version": "0.3.7",
@@ -20,10 +21,10 @@
 		"port": 8192,
 		"hostname": "SA-MP Server",
 		"maxplayers": 50,
-		"language": "",
+		"language": "English",
 		"mapname": "San Andreas",
 		"weburl": "www.sa-mp.com",
-		"gamemodetext": "Unknown",
+		"gamemodetext": "Deathmatch",
 		"announce": true,
 		"lanmode": false,
 		"query": true,
