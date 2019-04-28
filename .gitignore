@@ -48,3 +48,8 @@ samp.ban
 #
 
 *.sublime-workspace
+
+#
+# Node Modules that used by importer.js
+#
+scriptfiles/lsdm/importer/node_modules
