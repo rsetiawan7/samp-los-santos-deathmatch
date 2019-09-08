@@ -5,8 +5,8 @@
 #define _DEBUG 4
 
 // Third-party includes
+#include <YSI-Data/y_bit>
 #include <YSI-Core/y_debug>
-#include <YSI-Coding/y_hooks>
 #include <YSI-Data/y_iterate>
 #include <YSI-Coding/y_timers>
 #include <YSI-Visual/y_commands>
@@ -20,6 +20,7 @@
 // In-game stuffs
 #include "lsdm/pickups.inc"
 #include "lsdm/spawnpoints.inc"
+#include "lsdm/vehicles.inc"
 
 // Commands (for debugging purposes)
 #include "lsdm/commands.inc"
