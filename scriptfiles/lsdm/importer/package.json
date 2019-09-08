@@ -1,0 +1,14 @@
+{
+  "name": "vehicle_importer",
+  "version": "1.0.0",
+  "description": "This folder contains user and vehicle data (for SQLite)",
+  "main": "importer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "sqlite3": "^4.0.6"
+  }
+}

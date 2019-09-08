@@ -1,0 +1,1 @@
+This directory contains a little script to insert static vehicles (from Grand Larceny) into SQLite (vehicles.db)
