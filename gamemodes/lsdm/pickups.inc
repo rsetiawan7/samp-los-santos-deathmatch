@@ -40,7 +40,7 @@ new Float:gArmourPickupsLS[][4] = {
 };
 
 new
-  bool:CanRegeneration[MAX_PLAYERS],
+  BitArray:CanRegeneration<MAX_PLAYERS>,
   Iterator:ArmourPickups<MAX_PICKUPS>,
   Iterator:HealthPickups<MAX_PICKUPS>;
 
@@ -51,8 +51,16 @@ timer CooldownRegeneration[TIME_TO_WAIT_REGENERATION * 1000](playerid)
 
 SetRegenerationAbility(playerid, bool:status)
 {
+  if (status == true)
+  {
+    Bit_Let(CanRegeneration, playerid);
+  }
+  else
+  {
+    Bit_Vet(CanRegeneration, playerid);
+  }
+
   P:4("Regeneration ability to PlayerID %i set to %s", playerid, (status == true ? "TRUE" : "FALSE"));
-  CanRegeneration[playerid] = status;
 }
 
 RegenerationPlayerArmour(playerid)
@@ -70,7 +78,7 @@ RegenerationPlayerArmour(playerid)
 
     regenAmount = (armour + MAX_ARMOUR_REGENERATION);
     newArmour = regenAmount > 100.0 ? 100.0 : regenAmount;
-    P:4("PlayerID %.2f set a new armour from regeneration to %i points.", newArmour);
+    P:4("PlayerID %i set a new armour from regeneration to %.2f points.", playerid, newArmour);
     SetPlayerArmour(playerid, newArmour);
 
     defer CooldownRegeneration(playerid);
@@ -92,7 +100,7 @@ RegenerationPlayerHealth(playerid)
 
     regenAmount = (health + MAX_HEALTH_REGENERATION);
     newHealth = regenAmount > 100.0 ? 100.0 : regenAmount;
-    P:4("PlayerID %.2f set a new health from regeneration to %i points.", newHealth);
+    P:4("PlayerID %i set a new health from regeneration to %.2f points.", playerid, newHealth);
     SetPlayerHealth(playerid, newHealth >= 100.0 ? 100.0 : newHealth);
 
     defer CooldownRegeneration(playerid);
@@ -118,6 +126,8 @@ hook OnGameModeInit()
     new pickup = CreatePickup(1240, 1, gHealthPickupsLS[h][0], gHealthPickupsLS[h][1], gHealthPickupsLS[h][2], 0);
     Iter_Add(HealthPickups, pickup);
   }
+
+  return 1;
 }
 
 hook OnGameModeExit()
@@ -136,6 +146,8 @@ hook OnGameModeExit()
 
   Iter_Clear(ArmourPickups);
   Iter_Clear(HealthPickups);
+
+  return 1;
 }
 
 hook OnPlayerConnect(playerid)
@@ -146,7 +158,7 @@ hook OnPlayerConnect(playerid)
 // Callback for handle armour & health pickups.
 hook OnPlayerPickUpPickup(playerid, pickupid)
 {
-  if (CanRegeneration[playerid] == true)
+  if (Bit_Get(CanRegeneration, playerid) == true)
   {
     if (Iter_Contains(ArmourPickups, pickupid)) 
     {
@@ -157,4 +169,8 @@ hook OnPlayerPickUpPickup(playerid, pickupid)
       RegenerationPlayerHealth(playerid);
     }
   }
+
+  return 1;
 }
+
+#include <YSI-Coding/y_hooks>
