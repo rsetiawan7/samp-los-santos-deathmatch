@@ -3,6 +3,8 @@ public OnGameModeInit()
   // Initialize a pickup weapon's iterator.
   Iter_Init(gPickupWeapons);
 
+  // Set gamemode text.
+  SetGameModeText("Deathmatch");
   // Show all player's markers.
   ShowPlayerMarkers(PLAYER_MARKERS_MODE_GLOBAL);
   // Show player's name tags.
