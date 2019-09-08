@@ -5,10 +5,10 @@ new MAXIMUM_PICKUP_TIME_ALIVE = 30;
 new gWeaponPickupType = 19;
 
 // Dropable weapons (Weapon IDs) from a dead player.
-new gDropableWeapons[5] = { 24, 25, 29, 30, 33 };
+new gDropableWeapons[6] = { 16, 24, 25, 29, 30, 33 };
 
 // Slot weapon that acknowledged by script. Prevent someone to drop other slots.
-new gAcknowledgeWeaponSlots[5] = { 2, 3, 4, 5, 6 };
+new gAcknowledgeWeaponSlots[6] = { 2, 3, 4, 5, 6, 8 };
 
 // Create an array to store pickup weapons.
 new gPickupWeapons[MAX_PICKUPS][e_PickupWeapons];
