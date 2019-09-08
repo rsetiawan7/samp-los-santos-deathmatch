@@ -20,6 +20,8 @@ UpdatePlayerScore(playerid)
 
 GivePlayerWeapons(playerid)
 {
+  // Give a Grenade with 500 ammunitions.
+  GivePlayerWeapon(playerid, 16, 500);
   // Give a Desert Eagle with 500 ammunitions.
   GivePlayerWeapon(playerid, 24, 500);
   // Give a Shotgun with 500 ammunitions.
@@ -63,6 +65,7 @@ CreateWeaponPickupFromPlayer(playerid, weaponid, ammo)
 
   switch(weaponid)
   {
+    case 16: PickupID = CreatePickup(342, gWeaponPickupType, X, Y, Z, 0);
     case 24: PickupID = CreatePickup(348, gWeaponPickupType, X, Y, Z, 0);
     case 25: PickupID = CreatePickup(349, gWeaponPickupType, X, Y, Z, 0);
     case 29: PickupID = CreatePickup(353, gWeaponPickupType, X, Y, Z, 0);
