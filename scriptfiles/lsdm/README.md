@@ -1,1 +1,1 @@
-This folder contains user and vehicle data (for SQLite)
+This folder contains vehicle data (for SQLite)
