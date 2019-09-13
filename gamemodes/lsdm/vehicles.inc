@@ -91,7 +91,7 @@ LoadVehicleInit()
     db_free_result(db_query(gVehicleConnection, "\
     CREATE TABLE IF NOT EXISTS los_santos \
     (id INTEGER PRIMARY KEY ASC AUTOINCREMENT NOT NULL,\
-    model  INTEGER (5) NOT NULL,\
+    model INTEGER (5) NOT NULL,\
     x FLOAT NOT NULL,\
     y FLOAT NOT NULL,\
     z FLOAT NOT NULL,\
