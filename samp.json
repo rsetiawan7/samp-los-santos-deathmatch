@@ -5,5 +5,9 @@
 	"rcon_password": "[\u0026XaSr290]`-",
 	"port": 7777,
 	"hostname": "Los Santos Deathmatch",
-	"maxplayers": 32
+	"maxplayers": 32,
+	"plugins": ["Mellnik/hash-plugin"],
+	"filterscripts": [
+		"account-system"
+	]
 }
