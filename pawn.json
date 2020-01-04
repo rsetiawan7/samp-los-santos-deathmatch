@@ -11,7 +11,9 @@
 		"YSI-Core/y_debug",
 		"YSI-Data/y_iterate",
 		"YSI-Coding/y_timers",
-		"YSI-Data/y_bit"
+		"YSI-Data/y_bit",
+		"maddinat0r/sscanf",
+		"YSI-Core/y_master"
 	],
 	"runtime": {
 		"version": "0.3.7",

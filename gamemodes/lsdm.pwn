@@ -5,11 +5,16 @@
 #define _DEBUG 4
 
 // Third-party includes
+#include <sscanf2>
 #include <YSI-Data/y_bit>
 #include <YSI-Core/y_debug>
 #include <YSI-Data/y_iterate>
+#include <YSI-Server/y_colors>
 #include <YSI-Coding/y_timers>
 #include <YSI-Visual/y_commands>
+
+// Account System
+#include "../includes/account-system.inc"
 
 // Enumerations
 #include "lsdm/enumerations.inc"
