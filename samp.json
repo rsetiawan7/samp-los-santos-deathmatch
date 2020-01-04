@@ -6,7 +6,7 @@
 	"port": 7777,
 	"hostname": "Los Santos Deathmatch",
 	"maxplayers": 32,
-	"plugins": ["Mellnik/hash-plugin"],
+	"plugins": ["Mellnik/hash-plugin", "maddinat0r/sscanf"],
 	"filterscripts": [
 		"account-system"
 	]
