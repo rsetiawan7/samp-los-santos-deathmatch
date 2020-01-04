@@ -40,6 +40,17 @@ public OnPlayerDisconnect(playerid, reason)
   return 1;
 }
 
+hook OnPlayerRequestSpawn(playerid)
+{
+  // if (IsPlayerLoggedIn(playerid))
+  // {
+  //   SendClientMessage(playerid, X11_RED, "* You are not logged in.");
+  //   return 0;
+  // }
+
+  return 1;
+}
+
 public OnPlayerSpawn(playerid)
 {
   // Get a random spawn point from spawn points.
@@ -103,3 +114,5 @@ public OnPlayerPickUpPickup(playerid, pickupid)
 
   return 1;
 }
+
+#include <YSI-Coding/y_hooks>
