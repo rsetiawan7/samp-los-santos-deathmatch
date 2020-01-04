@@ -3,6 +3,7 @@
 #define TIME_TO_WAIT_REGENERATION 3
 
 // Pickup model: 1240
+// Health pickup locations around Los Santos.
 new Float:gHealthPickupsLS[][4] = {
   { 2102.67603, -1808.99146, 13.65605 },
   { 2378.94116, -1909.22058, 13.41560 },
@@ -25,6 +26,7 @@ new Float:gHealthPickupsLS[][4] = {
 };
 
 // Pickup model: 1242
+// Armour pickup locations around Los Santos.
 new Float:gArmourPickupsLS[][4] = {
   { 2552.16040, -1733.91162,  6.40766 },
   { 2195.91260, -1152.74365, 33.63910 },
@@ -40,10 +42,14 @@ new Float:gArmourPickupsLS[][4] = {
 };
 
 new
+  // Mark player able to regeneration armour / health.
   BitArray:CanRegeneration<MAX_PLAYERS>,
+  // Iterator (a pickup collections) for armour pickups.
   Iterator:ArmourPickups<MAX_PICKUPS>,
+  // Iterator (a pickup collections) for health pickups.
   Iterator:HealthPickups<MAX_PICKUPS>;
 
+// Timer for reset regeneration ability.
 timer CooldownRegeneration[TIME_TO_WAIT_REGENERATION * 1000](playerid)
 {
   SetRegenerationAbility(playerid, true);
@@ -74,13 +80,19 @@ RegenerationPlayerArmour(playerid)
 
   if (armour < 100.0)
   {
+    // Set regeneration to false.
     SetRegenerationAbility(playerid, false);
 
+    // Get total armour by add current player's armour and amount of armour regeneration.
     regenAmount = (armour + MAX_ARMOUR_REGENERATION);
+    // Re-calculate the new amount of player's armour to make sure not more than 100 points.
     newArmour = regenAmount > 100.0 ? 100.0 : regenAmount;
-    P:4("PlayerID %i set a new armour from regeneration to %.2f points.", playerid, newArmour);
+    // Set the new armour.
     SetPlayerArmour(playerid, newArmour);
 
+    P:4("PlayerID %i set a new armour from regeneration to %.2f points.", playerid, newArmour);
+
+    // Call timer to reset player's regeneration ability.
     defer CooldownRegeneration(playerid);
   }
 }
@@ -96,12 +108,17 @@ RegenerationPlayerHealth(playerid)
 
   if (health < 100.0)
   {
+    // Set regeneration to false.
     SetRegenerationAbility(playerid, false);
 
+    // Get total armour by add current player's health and amount of health regeneration.
     regenAmount = (health + MAX_HEALTH_REGENERATION);
+    // Re-calculate the new amount of player's health to make sure not more than 100 points.
     newHealth = regenAmount > 100.0 ? 100.0 : regenAmount;
-    P:4("PlayerID %i set a new health from regeneration to %.2f points.", playerid, newHealth);
+    // Set the new health.
     SetPlayerHealth(playerid, newHealth >= 100.0 ? 100.0 : newHealth);
+
+    P:4("PlayerID %i set a new health from regeneration to %.2f points.", playerid, newHealth);
 
     defer CooldownRegeneration(playerid);
   }
@@ -158,8 +175,10 @@ hook OnPlayerConnect(playerid)
 // Callback for handle armour & health pickups.
 hook OnPlayerPickUpPickup(playerid, pickupid)
 {
+  // Check player's regeneration ability. Only player that has a regeneration can regenerate his armour / health.
   if (Bit_Get(CanRegeneration, playerid) == true)
   {
+    // Only regenerate armour / health with a valid pickups
     if (Iter_Contains(ArmourPickups, pickupid)) 
     {
       RegenerationPlayerArmour(playerid);
