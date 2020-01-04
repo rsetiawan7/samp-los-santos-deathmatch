@@ -50,7 +50,7 @@ CreateWeaponPickupFromPlayer(playerid, weaponid, ammo)
 {
   // Variable to store player position. It used as pickup weapons.
   new
-    PickupID,
+    PickupID = -1,
     Float:X,
     Float:Y,
     Float:Z;
@@ -73,16 +73,21 @@ CreateWeaponPickupFromPlayer(playerid, weaponid, ammo)
     case 33: PickupID = CreatePickup(357, gWeaponPickupType, X, Y, Z, 0);
   }
 
-  // Set the weapon ID.
-  gPickupWeapons[PickupID][WeaponID] = weaponid;
-  // Set the ammo. We just pick 10% of the total dropped ammo.
-  gPickupWeapons[PickupID][Ammo] = ammo / 10;
-  // Set timer pickup alive.
-  gPickupWeapons[PickupID][Gone] = defer RemoveWeaponPickup(PickupID);
-  // Add the information to the iterator.
-  Iter_Add(PickupWeapons, PickupID);
+  // Only drop a valid weapons.
+  if (PickupID >= 0) {
+    // Set the weapon ID.
+    gPickupWeapons[PickupID][WeaponID] = weaponid;
+    // Set the ammo. We just pick 10% of the total dropped ammo.
+    gPickupWeapons[PickupID][Ammo] = ammo / 10;
+    // Set timer pickup alive.
+    gPickupWeapons[PickupID][Gone] = defer RemoveWeaponPickup(PickupID);
+    // Add the information to the iterator.
+    Iter_Add(PickupWeapons, PickupID);
 
-  P:4("Drop --> Pickup ID: %d | Weapon ID: %d | Ammo: %d", PickupID, weaponid, ammo);
+    P:4("Drop --> Pickup ID: %d | Weapon ID: %d | Ammo: %d", PickupID, weaponid, ammo);
+  } else {
+    P:4("Not dropped --> Weapon ID: %d | Ammo: %d", weaponid, ammo);
+  }
 }
 
 DropPlayerWeapons(playerid)
