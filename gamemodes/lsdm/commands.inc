@@ -20,7 +20,7 @@ YCMD:register(playerid, params[], help) {
 
   // Register the account.
   // new register = CallRemoteFunction("CreatePlayerAccount", "sss", username, password, "test@gmail.com");
-  new register = broadcastfunc CreatePlayerAccount(username, password, "test@gmail.com");
+  new register = CreatePlayerAccount(username, password, "test@gmail.com");
 
   P:4("CreatePlayerAccount -> called. Return: %i", register);
 

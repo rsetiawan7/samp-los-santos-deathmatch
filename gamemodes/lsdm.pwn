@@ -14,6 +14,9 @@
 #include <YSI-Visual/y_commands>
 
 // Account System
+// #define MASTER 4
+// #define YSI_IS_CLIENT
+// #include <YSI-Core/y_master>
 #include "../includes/account-system.inc"
 
 // Enumerations
@@ -28,6 +31,7 @@
 #include "lsdm/vehicles.inc"
 
 // Commands (for debugging purposes)
+#include <YSI-Core/y_master>
 #include "lsdm/commands.inc"
 
 // Main Function
