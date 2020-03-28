@@ -1,10 +1,10 @@
-public OnGameModeInit()
+hook OnScriptInit()
 {
   // Initialize a pickup weapon's iterator.
   Iter_Init(gPickupWeapons);
 
   // Set gamemode text.
-  SetGameModeText("Deathmatch");
+  // SetGameModeText("Deathmatch");
   // Show all player's markers.
   ShowPlayerMarkers(PLAYER_MARKERS_MODE_GLOBAL);
   // Show player's name tags.
@@ -23,19 +23,19 @@ public OnGameModeInit()
   return 1;
 }
 
-public OnGameModeExit()
+hook OnScriptExit()
 {
   print("Gamemode ended.");
   return 1;
 }
 
-public OnPlayerConnect(playerid)
+hook OnPlayerConnect(playerid)
 {
   ResetPlayerScoreEx(playerid);
   return 1;
 }
 
-public OnPlayerDisconnect(playerid, reason)
+hook OnPlayerDisconnect(playerid, reason)
 {
   return 1;
 }
@@ -51,7 +51,7 @@ hook OnPlayerRequestSpawn(playerid)
   return 1;
 }
 
-public OnPlayerSpawn(playerid)
+hook OnPlayerSpawn(playerid)
 {
   // Get a random spawn point from spawn points.
   new randSpawn = random(sizeof(gRandomSpawns_LosSantos));
@@ -71,7 +71,7 @@ public OnPlayerSpawn(playerid)
   return 1;
 }
 
-public OnPlayerDeath(playerid, killerid, reason)
+hook OnPlayerDeath(playerid, killerid, reason)
 {
   // Set victim's score to zero.
   ResetPlayerScoreEx(playerid);
@@ -83,7 +83,7 @@ public OnPlayerDeath(playerid, killerid, reason)
   return 1;
 }
 
-public OnPlayerPickUpPickup(playerid, pickupid)
+hook OnPlayerPickUpPickup(playerid, pickupid)
 {
   // Just in case... We get the current weapon that player holds right now.
   new curWeapon = GetPlayerWeapon(playerid);
@@ -115,4 +115,4 @@ public OnPlayerPickUpPickup(playerid, pickupid)
   return 1;
 }
 
-#include <YSI-Coding/y_hooks>
+#include <YSI_Coding\y_hooks>

@@ -124,7 +124,7 @@ RegenerationPlayerHealth(playerid)
   }
 }
 
-hook OnGameModeInit()
+hook OnScriptInit()
 {
   // Initialize iterator pickups.
   Iter_Init(ArmourPickups);
@@ -147,7 +147,7 @@ hook OnGameModeInit()
   return 1;
 }
 
-hook OnGameModeExit()
+hook OnScriptExit()
 {
   foreach (new a : ArmourPickups)
   {
@@ -170,6 +170,8 @@ hook OnGameModeExit()
 hook OnPlayerConnect(playerid)
 {
   SetRegenerationAbility(playerid, true);
+
+  return 1;
 }
 
 // Callback for handle armour & health pickups.
@@ -192,4 +194,4 @@ hook OnPlayerPickUpPickup(playerid, pickupid)
   return 1;
 }
 
-#include <YSI-Coding/y_hooks>
+#include <YSI_Coding\y_hooks>

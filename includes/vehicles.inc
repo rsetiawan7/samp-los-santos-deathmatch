@@ -4,19 +4,23 @@ new
   // For static vehicles' iteration.
   Iterator:StaticVehicles<MAX_VEHICLES>;
 
-hook OnGameModeInit()
+hook OnScriptInit()
 {
   // Initialize static vehicles' iteration.
   Iter_Init(StaticVehicles);
 
   // Initialize to load static vehicles from database.
   LoadVehicleInit();
+
+  return 1;
 }
 
-hook OnGameModeExit()
+hook OnScriptExit()
 {
   // Unload some static vehicles.
   LoadVehicleExit();
+
+  return 1;
 }
 
 LoadVehicleDatabase()
@@ -124,4 +128,4 @@ LoadVehicleExit()
   return 1;
 }
 
-#include <YSI-Coding/y_hooks>
+#include <YSI_Coding\y_hooks>

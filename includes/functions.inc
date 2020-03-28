@@ -1,3 +1,19 @@
+#include <YSI_Coding\y_va>
+
+SendInformationMessage(playerid, const string:text[], va_args<>)
+{
+  new str[160];
+  va_format(str, sizeof(str), text, va_start<2>);
+  return SendClientMessage(playerid, X11_WHITE, str);
+}
+
+SendErrorMessage(playerid, const string:text[], va_args<>)
+{
+  new str[160];
+  va_format(str, sizeof(str), text, va_start<2>);
+  return SendClientMessage(playerid, X11_RED, str);
+}
+
 ResetPlayerScoreEx(playerid)
 {
   // Set player score to zero.
