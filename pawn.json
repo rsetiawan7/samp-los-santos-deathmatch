@@ -1,20 +1,33 @@
 {
 	"user": "rsetiawan7",
 	"repo": "los-santos-deathmatch",
-	"entry": "gamemodes\\lsdm.pwn",
-	"output": "gamemodes\\lsdm.amx",
+	"entry": "lsdm.pwn",
+	"output": "../lsdm.amx",
 	"dependencies": [
-		"sampctl/samp-stdlib",
-		"YSI-Coding/y_hooks",
-		"YSI-Server/y_colors",
-		"YSI-Visual/y_commands",
-		"YSI-Core/y_debug",
-		"YSI-Data/y_iterate",
-		"YSI-Coding/y_timers",
-		"YSI-Data/y_bit",
+		"sampctl/samp-stdlib",		
 		"maddinat0r/sscanf",
-		"YSI-Core/y_master"
+		"rsetiawan7/samp-account-system",
+		"pawn-lang/YSI-Includes@5.x"
 	],
+	"builds": [
+    {
+      "name": "dev",
+			"args": ["-;+", "-(+", "-d3", "-Z+"],
+			"includes": ["../../filterscripts/account-system"],
+      "constants": {
+				"_DEBUG": "4",
+        "MAX_PLAYERS": "10"
+      }
+    },
+    {
+      "name": "live",
+      "args": ["-;+", "-(+", "-O2", "-Z+"],
+      "constants": {
+				"_DEBUG": "0",
+				"MAX_PLAYERS": "200"
+			}
+    }
+  ],
 	"runtime": {
 		"version": "0.3.7",
 		"mode": "y_testing",
@@ -27,6 +40,11 @@
 		"mapname": "San Andreas",
 		"weburl": "www.sa-mp.com",
 		"gamemodetext": "Deathmatch",
+		"plugins": [
+			"sscanf",
+			"crashdetect",
+			"Whirlpool"
+		],
 		"announce": true,
 		"lanmode": false,
 		"query": true,
